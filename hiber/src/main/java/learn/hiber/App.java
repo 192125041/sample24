@@ -5,7 +5,7 @@ import org.hibernate.Transaction;
 import org.hibernate.Session;
 public class App {
     public static void main(String[] args) {
-    	Student st=new Student(9, "janu", "redFlower", 2009);
+    	//Student st=new Student(9, "janu", "redFlower", 2009);
         Configuration cfg = new Configuration()
             .setProperty("hibernate.connection.driver_class", "com.mysql.cj.jdbc.Driver")
             .setProperty("hibernate.connection.url", "jdbc:mysql://localhost:3306/j2ee")
@@ -19,7 +19,13 @@ public class App {
         SessionFactory factory = cfg.buildSessionFactory();
         Session session = factory.openSession(); 
         Transaction tx=session.beginTransaction();
-        session.save(st);
+        Person p1=new Person();
+        AdharCard ac= new AdharCard(111,"sai","baglore","male",p1);
+        p1.setId(101);
+        p1.setNickName("venu");
+        p1.setCard(ac);
+        session.persist(p1);
+        session.persist(ac);
         tx.commit();
         session.close();
         factory.close();
