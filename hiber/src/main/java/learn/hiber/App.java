@@ -27,7 +27,7 @@ public class App {
         session.persist(p1);
         session.persist(ac);
         tx.commit();
-        session.close();
+        session.close();	
         factory.close();
     }
 }
